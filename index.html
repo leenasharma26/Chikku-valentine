@@ -1,1 +1,211 @@
-# Chikku-valentine
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For My Chikku ❤️</title>
+
+<style>
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:#fff0f5;
+  text-align:center;
+  overflow-x:hidden;
+}
+section{padding:40px 20px;}
+.hidden{display:none;}
+h2{color:#ff5d8f}
+
+/* Envelope */
+.envelope{
+  width:260px;height:170px;
+  background:#ffe5ec;
+  margin:40px auto;
+  position:relative;
+  cursor:pointer;
+  border-radius:10px;
+}
+.flap{
+  position:absolute;
+  width:0;height:0;
+  border-left:130px solid transparent;
+  border-right:130px solid transparent;
+  border-bottom:80px solid #ff8fab;
+  top:-80px;
+}
+.letter{
+  background:white;
+  width:220px;
+  margin:15px auto;
+  padding:15px;
+  border-radius:8px;
+}
+
+/* Heart Envelopes */
+.hearts{
+  display:flex;
+  gap:15px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.heart{
+  width:80px;height:80px;
+  background:#ffb3c6;
+  transform:rotate(-45deg);
+  position:relative;
+  cursor:pointer;
+}
+.heart:before,.heart:after{
+  content:'';
+  width:80px;height:80px;
+  background:#ffb3c6;
+  border-radius:50%;
+  position:absolute;
+}
+.heart:before{top:-40px;left:0;}
+.heart:after{left:40px;top:0;}
+.heart-msg{
+  margin-top:15px;
+  display:none;
+  background:white;
+  padding:15px;
+  border-radius:10px;
+}
+
+/* Cards */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:15px;
+}
+.card{
+  background:white;
+  padding:20px;
+  border-radius:15px;
+  cursor:pointer;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Valentine */
+#valentine button{
+  padding:12px 25px;
+  font-size:18px;
+  border:none;
+  border-radius:10px;
+}
+#yes{background:#ff4d6d;color:white;}
+#no{
+  background:#adb5bd;color:white;
+  position:absolute;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ENVELOPE LETTERS -->
+<section>
+<h2>Open When You Feel Loved 💌</h2>
+
+<div class="envelope" onclick="toggle('l1')">
+<div class="flap"></div>
+<div id="l1" class="letter hidden">
+<textarea rows="4" style="width:100%">Write your love message here…</textarea>
+</div>
+</div>
+
+<div class="envelope" onclick="toggle('l2')">
+<div class="flap"></div>
+<div id="l2" class="letter hidden">
+<textarea rows="4" style="width:100%">Another letter for my Chikku…</textarea>
+</div>
+</div>
+</section>
+
+<!-- HEART MOODS -->
+<section>
+<h2>Open When… ❤️</h2>
+<div class="hearts">
+<div onclick="showMsg('h1')" class="heart"></div>
+<div onclick="showMsg('h2')" class="heart"></div>
+<div onclick="showMsg('h3')" class="heart"></div>
+<div onclick="showMsg('h4')" class="heart"></div>
+<div onclick="showMsg('h5')" class="heart"></div>
+</div>
+
+<div id="h1" class="heart-msg">When you are happy 💖 — write msg</div>
+<div id="h2" class="heart-msg">When you are sad 💔 — write msg</div>
+<div id="h3" class="heart-msg">When you are angry 😡 — write msg</div>
+<div id="h4" class="heart-msg">When you can’t sleep 🌙 — I miss you</div>
+<div id="h5" class="heart-msg">When you miss me 🫂 — I’m here</div>
+</section>
+
+<!-- OUR STORY -->
+<section>
+<h2>Our Story 📖</h2>
+<div class="cards">
+<div class="card">📅 Date<br><b>First Meet</b><br>Write memory 💕</div>
+<div class="card">📅 Date<br><b>First Call</b><br>Write memory 💕</div>
+<div class="card">📅 Date<br><b>First Fight</b><br>Write memory 💕</div>
+<div class="card">📅 Date<br><b>Still Together</b><br>Forever 💞</div>
+</div>
+</section>
+
+<!-- FUTURE PLANS -->
+<section>
+<h2>Our Future Plans 🌱</h2>
+<div class="cards">
+<div class="card">Trips Together ✈️</div>
+<div class="card">Home With Love 🏡</div>
+<div class="card">Late Night Talks 🌙</div>
+<div class="card">Forever Us 💍</div>
+</div>
+</section>
+
+<!-- REASONS -->
+<section>
+<h2>5 Reasons I Love You 💕</h2>
+<div class="cards">
+<div class="card">Reason 1</div>
+<div class="card">Reason 2</div>
+<div class="card">Reason 3</div>
+<div class="card">Reason 4</div>
+<div class="card">Reason 5</div>
+</div>
+</section>
+
+<!-- VALENTINE -->
+<section id="valentine">
+<h2>Will You Be My Valentine? ❤️</h2>
+<button id="yes" onclick="yes()">YES</button>
+<button id="no" onclick="no()">NO</button>
+</section>
+
+<script>
+function toggle(id){
+ document.getElementById(id).classList.toggle('hidden');
+}
+function showMsg(id){
+ document.querySelectorAll('.heart-msg').forEach(m=>m.style.display='none');
+ document.getElementById(id).style.display='block';
+}
+let n=0;
+function no(){
+ n++;
+ let no=document.getElementById('no');
+ no.style.left=Math.random()*80+'vw';
+ no.style.top=Math.random()*80+'vh';
+ document.getElementById('yes').style.transform=`scale(${1+n*0.2})`;
+}
+function yes(){
+ document.body.innerHTML=
+ `<h1 style="margin-top:40vh;color:#ff4d6d">
+ 🧸🧸 Teddy Dance 🧸🧸<br>
+ Yah! I knew it 😍<br>
+ I love you darling hubby 🫂🫂
+ </h1>`;
+}
+</script>
+
+</body>
+</html>
